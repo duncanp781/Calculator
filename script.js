@@ -32,6 +32,7 @@ for(let i = 9; i >= 0; i--){
   }
 }
 
+
 const nums = document.querySelectorAll('.num');
 nums.forEach((num) =>{
   num.addEventListener('click', event => addNumEventHandler(event));
@@ -53,7 +54,10 @@ function clearHandler(e){
 }
 
 function clearCalculator(calculator){
-  console.log('clearing');
+  if(calculator.currentOperation != null){
+    let selected = document.getElementById(calculator.currentOperation);
+    selected.classList.remove('selected');
+  }
   calculator.num1 = 0;
   calculator.num2 = 0;
   calculator.onNum1 = true;
@@ -75,18 +79,19 @@ function addNumEventHandler(e){
 
 function changeOperator(operator, calculator){
   if(operator == calculator.currentOperation) return;
-  if(calculator.currentOperation == null){
-    calculator.currentOperation = operator;
-    calculator.onNum1 = false;
-  }else{
+  if(calculator.currentOperation!= null){
     evaluate(calculator);
-    calculator.currentOperation = operator;
-    calculator.onNum1 = false;
   }
+  calculator.currentOperation = operator;
+  let selected = document.getElementById(calculator.currentOperation);
+  selected.classList.add('selected');
+  calculator.onNum1 = false;
 }
 
 function evaluate(calculator){
   if(calculator.currentOperation != null){
+    selected = document.getElementById(calculator.currentOperation);
+    selected.classList.remove('selected');
     calculator.onNum1 = true;
     calculator.num1 = operate(calculator.currentOperation, calculator.num1, calculator.num2);
     calculator.currentOperation = null;
@@ -116,33 +121,16 @@ function updateDisplay(calculator){
 function operate(operation, a, b){
   switch (operation){
     case '+':
-      return add(a,b);
+      return a+b;
     break;
     case '-':
-      return subtract(a,b);
+      return a-b;
     break;
     case 'x':
-      return multiply(a,b);
+      return a*b;
     break;
     case '/':
-      return divide(a,b);
+      return a/b;
     break;
   }
-}
-
-
-function add(a,b){
-  return a+b;
-}
-
-function subtract(a,b){
-  return a-b;
-}
-
-function multiply(a,b){
-  return a*b;
-}
-
-function divide(a,b){
-  return a/b;
 }
