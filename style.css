@@ -1,0 +1,56 @@
+/* For debugging flexbox 
+  *{
+  border-style: solid;
+  border-color: orchid;
+  border-width: 2px;
+}*/ 
+#calculator{
+  width: fit-content;
+  border-style: solid;
+  border-color: #404040;
+  border-radius: 4px;
+}
+#buttons{
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  padding: 12px;
+  background-color: darkgray;
+}
+#buttons > * > *{
+  /*Selects the buttons*/
+  padding: 10px;
+  font-size: 24px;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  margin: 1px;
+}
+.num{
+  border-color: blue;
+  background-color: cyan;
+}
+#operators{
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+.operator{
+  border-color: red;
+  background-color: orange;
+}
+
+#display{
+  font-size: 18px;
+  padding: 8px;
+  background-color: gray;
+  text-align: right;
+}
+
+#numbers{
+  width: 140px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
